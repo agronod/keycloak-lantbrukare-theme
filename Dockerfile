@@ -1,10 +1,10 @@
 # build environment
-FROM node:14-alpine as build
+FROM timbru31/java-node:11-jre-14 as build
 WORKDIR /app
 COPY package.json yarn.lock ./
 
-RUN apk --no-cache add curl
-RUN apt-get -y install default-jre
+# RUN apk --no-cache add curl
+# RUN apt-get -y install default-jre
 
 RUN yarn install --frozen-lockfile
 COPY . .

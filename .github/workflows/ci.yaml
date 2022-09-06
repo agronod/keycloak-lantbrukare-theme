@@ -39,16 +39,10 @@ jobs:
       #   -DpomFile=./pom.xml 
       #   -DrepositoryId=github 
       #   -Durl=https://maven.pkg.github.com/agronod/keycloakify
-      #   -Dtoken=${{ secrets.GITHUB_TOKEN }}
-      run: mvn install:install-file \
-        "-Dfile=./build_keycloak/target/agronod-keycloak-app-keycloak-theme-0.3.0.jar" \
-        "-DgroupId=com.agronod" \
-        "-DartifactId=keycloak_theme" \
-        "-Dversion=0.0.1" \
-        "-Dpackaging=jar" \
-        "-DgeneratePom=true" \
-        "-Durl=https://maven.pkg.github.com/agronod/keycloakify" \        
-        "-Dtoken=${{ secrets.GITHUB_TOKEN }}"
+      #   -Dtoken=${{ secrets.GITHUBTOKEN }}
+      run: mvn deploy:deploy-file "-Dfile=./build_keycloak/target/agronod-keycloak-app-keycloak-theme-0.3.0.jar" "-DgroupId=com.agronod" "-DartifactId=keycloak_theme" "-Dversion=0.0.1" "-Dpackaging=jar" "-DgeneratePom=true" "-Durl=https://maven.pkg.github.com/agronod/keycloakify" "-Dtoken=${{ secrets.GITHUBTOKEN }}"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
       # run: mvn deploy:deploy-file \
       #   -DpomFile=./build_keycloak/target/pom.xml \
       #   -DgroupId=agronod \
@@ -57,9 +51,9 @@ jobs:
       #   -Dpackaging=jar \
       #   -Dfile=./build_keycloak/target/agronod-keycloak-app-keycloak-theme-0.3.0.jar \
       #   -Durl=https://maven.pkg.github.com/agronod/keycloakify \
-      #   -Dtoken=${{ secrets.GITHUB_TOKEN }}
+      #   -Dtoken=${{ secrets.GITHUBTOKEN }}
       # env:
-      #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
 
   get_version:
     runs-on: ubuntu-latest  

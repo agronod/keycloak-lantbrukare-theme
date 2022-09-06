@@ -41,6 +41,7 @@ jobs:
       #   -Durl=https://maven.pkg.github.com/agronod/keycloakify
       #   -Dtoken=${{ secrets.GITHUB_TOKEN }}
       run: mvn deploy:deploy-file \
+        -DpomFile=./build_keycloak/target/pom.xml \
         -DgroupId=agronod \
         -DartifactId=keycloak_theme \
         -Dversion=0.1 \

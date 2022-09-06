@@ -1,142 +1,34 @@
-name: ci
+name: CI
+
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    branches: [main, develop]
+    paths-ignore:
+      - "kustomize/**"
   workflow_dispatch:
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
 jobs:
-
-  # build:
-  #   runs-on: ubuntu-latest
-  #   if: github.event.head_commit.author.name != 'actions'
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - uses: actions/setup-node@v2.1.3
-  #     with:
-  #       node-version: '14'
-  #   - uses: bahmutov/npm-install@v1
-  #   - run: yarn build
-  #   - run: npx build-keycloak-theme
-  #   - uses: actions/upload-artifact@v2
-  #     with:
-  #       name: standalone_keycloak_theme
-  #       path: build_keycloak/target/agronod-keycloak-app-keycloak-theme-0.3.0.jar
-  #   - run: npx build-keycloak-theme --external-assets
-  #   - uses: actions/upload-artifact@v2
-  #     with:
-  #       name: keycloak_theme
-  #       path: build_keycloak/target/agronod-keycloak-app-keycloak-theme-0.3.0.jar
-  #   - uses: actions/upload-artifact@v2
-  #     with:
-  #       name: build
-  #       path: build
-
-    # - name: Publish package
-    #   # run: mvn deploy:deploy-file -Dfile=./build_keycloak/target/agronod-keycloak-app-keycloak-theme-0.3.0.jar
-    #   #   -DpomFile=./pom.xml 
-    #   #   -DrepositoryId=github 
-    #   #   -Durl=https://maven.pkg.github.com/agronod/keycloakify
-    #   #   -Dtoken=${{ secrets.GITHUBTOKEN }}
-    #   run: mvn deploy:deploy-file "-Dfile=./build_keycloak/target/agronod-keycloak-app-keycloak-theme-0.3.0.jar" "-DgroupId=com.agronod" "-DartifactId=keycloak_theme" "-Dversion=0.0.1" "-Dpackaging=jar" "-DgeneratePom=true" "-Durl=https://maven.pkg.github.com/agronod/keycloakify" "-Dtoken=${{ secrets.GITHUBTOKEN }}"
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
-    #   # run: mvn deploy:deploy-file \
-    #   #   -DpomFile=./build_keycloak/target/pom.xml \
-    #   #   -DgroupId=agronod \
-    #   #   -DartifactId=keycloak_theme \
-    #   #   -Dversion=0.1 \
-    #   #   -Dpackaging=jar \
-    #   #   -Dfile=./build_keycloak/target/agronod-keycloak-app-keycloak-theme-0.3.0.jar \
-    #   #   -Durl=https://maven.pkg.github.com/agronod/keycloakify \
-    #   #   -Dtoken=${{ secrets.GITHUBTOKEN }}
-    #   # env:
-    #   #   GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
-
-  # get_version:
-  #   runs-on: ubuntu-latest  
-  #   needs: build
-  #   outputs:
-  #     new_version: ${{ steps.tag_version.outputs.new_version }}    
-  #   steps:  
-  #     - name: Log in to the Container registry
-  #       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
-  #       with:
-  #         registry: ${{ env.REGISTRY }}
-  #         username: ${{ github.actor }}
-  #         password: ${{ secrets.GITHUBTOKEN }}
-
-  #     - name: Identify new version
-  #       uses: mathieudutour/github-tag-action@v5.5
-  #       id: tag_version
-  #       with:
-  #         # pre_release_branches: develop
-  #         # append_to_pre_release_tag: prerelease
-  #         github_token: ${{ secrets.GITHUBTOKEN }}
-
-  # check_if_version_upgraded:
-  #   name: Check if version upgrade
-  #   runs-on: ubuntu-latest
-  #   needs: build
-  #   outputs:
-  #     from_version: ${{ steps.step1.outputs.from_version }}
-  #     to_version: ${{ steps.step1.outputs.to_version }}
-  #     is_upgraded_version: ${{ steps.step1.outputs.is_upgraded_version }}
-  #   steps:
-  #   - uses: garronej/ts-ci@v1.1.3
-  #     id: step1
-  #     with: 
-  #       action_name: is_package_json_version_upgraded
-
-  # github_pages:
-  #   runs-on: ubuntu-latest
-  #   needs: 
-  #     - check_if_version_upgraded
-  #     - build
-  #   # We publish the the docker image only if it's a push on the default branch or if it's a PR from a 
-  #   # branch (meaning not a PR from a fork). It would be more straightforward to test if secrets.DOCKERHUB_TOKEN is 
-  #   # defined but GitHub Action don't allow it.
-  #   if: |
-  #     needs.check_if_version_upgraded.outputs.is_upgraded_version == 'true' &&
-  #     github.event_name == 'push' || 
-  #     github.event.pull_request.head.repo.owner.login == github.event.pull_request.base.repo.owner.login 
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - uses: actions/download-artifact@v2
-  #     with:
-  #       name: build
-  #       path: build
-  #   - uses: actions/setup-node@v2.1.3
-  #     with:
-  #       node-version: '15'
-  #   - run: echo $(node -e 'console.log(require("url").parse(require("./package.json").homepage).host)') > build/CNAME
-  #   - run: git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${{github.repository}}.git
-  #     env:
-  #       GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
-  #   - run: npx -y -p gh-pages@3.1.0 gh-pages -d build -u "github-actions-bot <actions@github.com>"
-
-  docker:
-    # needs: 
-      # - check_if_version_upgraded
-      # - build
+  build:
+    name: Build
     runs-on: ubuntu-latest
-    # We publish the the docker image only if it's a push on the default branch or if it's a PR from a 
-    # branch (meaning not a PR from a fork). It would be more straightforward to test if secrets.DOCKERHUB_TOKEN is 
-    # defined but GitHub Action don't allow it.
-    # if: |
-    #   github.event_name == 'push' || 
-    #   github.event.pull_request.head.repo.owner.login == github.event.pull_request.base.repo.owner.login 
+    outputs:
+      new_version: ${{ steps.tag_version.outputs.new_version }}
+
     steps:
-      - uses: actions/checkout@v2
+      - name: Check out code
+        uses: actions/checkout@v2
+
       - name: Log in to the Container registry
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUBTOKEN }}
+
       - name: Identify new version
         uses: mathieudutour/github-tag-action@v5.5
         id: tag_version
@@ -144,58 +36,58 @@ jobs:
           # pre_release_branches: develop
           # append_to_pre_release_tag: prerelease
           github_token: ${{ secrets.GITHUBTOKEN }}
-      # - uses: actions/download-artifact@v2
-      #   with:
-      #     name: build
-      #     path: build
-      # - run: tar -cvf build.tar ./build
+
+      - name: Create a GitHub release
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.tag_version.outputs.new_tag }}
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
+
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: .
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.tag_version.outputs.new_version }}
-          labels: ${{ steps.tag_version.outputs.new_version }}      
-      # - uses: docker/build-push-action@v2
-      #   with:
-      #     push: true
-      #     context: .
-      #     tags: ${{ steps.step1.outputs.docker_tags }}
-      #     file: Dockerfile.ci
+          labels: ${{ steps.tag_version.outputs.new_version }}
 
-  # create_github_release:
+  # deploy:
+  #   name: Deploy
   #   runs-on: ubuntu-latest
-  #   needs: 
-  #     # - check_if_version_upgraded
-  #     - build      
-  #   # We create a release only if the version have been upgraded and we are on a default branch
-  #   # PR on the default branch can release beta but not real release
-  #   if: |
-  #     needs.check_if_version_upgraded.outputs.is_upgraded_version == 'true' &&
-  #     (
-  #       github.event_name == 'push' ||
-  #       needs.check_if_version_upgraded.outputs.is_release_beta == 'true'
-  #     )
+  #   needs: build
+
   #   steps:
-  #   - uses: actions/download-artifact@v2
-  #     with:
-  #       name: keycloak_theme
-  #   - run: mkdir jars
-  #   - run: mv agronod-keycloak-app-keycloak-theme-0.3.0.jar jars/keycloak-theme.jar
-  #   - uses: actions/download-artifact@v2
-  #     with:
-  #       name: standalone_keycloak_theme
-  #   - run: mv agronod-keycloak-app-keycloak-theme-0.3.0.jar jars/standalone-keycloak-theme.jar
-  #   - uses: softprops/action-gh-release@v1
-  #     with:
-  #       name: Release v${{ needs.check_if_version_upgraded.outputs.to_version }}
-  #       tag_name: v${{ needs.check_if_version_upgraded.outputs.to_version }}
-  #       target_commitish: ${{ github.head_ref || github.ref }}
-  #       generate_release_notes: true
-  #       files: |
-  #         jars/keycloak-theme.jar
-  #         jars/standalone-keycloak-theme.jar
-  #       draft: false
-  #       prerelease: ${{ needs.check_if_version_upgraded.outputs.is_release_beta == 'true' }}
-  #     env:
-  #       GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
+  #     - name: Check out code
+  #       uses: actions/checkout@v2
+
+  #     - name: Setup Kustomize
+  #       uses: imranismail/setup-kustomize@v1
+  #       with:
+  #         kustomize-version: "3.6.1"
+
+  #     - name: Update Kubernetes staging resources
+  #       if: ${{ github.ref != 'refs/heads/main' }}
+  #       run: |
+  #         cd kustomize/overlays/staging
+  #         kustomize edit set image agrosphere-api=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:'${{ needs.build.outputs.new_version }}'
+  #         cat kustomization.yaml
+
+  #     - name: Update Kubernetes production resources
+  #       if: ${{ github.ref == 'refs/heads/main' }}
+  #       run: |
+  #         cd kustomize/overlays/production
+  #         kustomize edit set image agrosphere-api=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:'${{ needs.build.outputs.new_version }}'
+  #         cat kustomization.yaml
+
+  #     - name: Commit files
+  #       run: |
+  #         git config --local user.email "action@github.com"
+  #         git config --local user.name "GitHub Action"
+  #         git commit -am "Bump docker tag ${{ needs.build.outputs.new_version }}"
+
+  #     - name: Push changes
+  #       uses: ad-m/github-push-action@master
+  #       with:
+  #         github_token: ${{ secrets.GITHUBTOKEN }}
+  #         branch: ${{ github.ref }}

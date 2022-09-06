@@ -2,7 +2,7 @@ import { getKcContext } from "keycloakify";
 
 export const { kcContext } = getKcContext({
   /* Uncomment to test outside of keycloak, ⚠️ don't forget to run 'yarn keycloak' at least once */
-  mockPageId: "login.ftl",
+  // mockPageId: "login.ftl",
   /**
    * Customize the simulated kcContext that will let us
    * dev the page outside keycloak (with auto-reload)

@@ -23,29 +23,29 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: standalone_keycloak_theme
-        path: build_keycloak/target/*keycloak-theme*.jar
+        path: build_keycloak/target/agronod-keycloak-app-keycloak-theme-0.3.0.jar
     - run: npx build-keycloak-theme --external-assets
     - uses: actions/upload-artifact@v2
       with:
         name: keycloak_theme
-        path: build_keycloak/target/*keycloak-theme*.jar
+        path: build_keycloak/target/agronod-keycloak-app-keycloak-theme-0.3.0.jar
     - uses: actions/upload-artifact@v2
       with:
         name: build
         path: build
 
     - name: Publish package
-      # run: mvn deploy:deploy-file -Dfile=./build_keycloak/target/*keycloak-theme*.jar
+      # run: mvn deploy:deploy-file -Dfile=./build_keycloak/target/agronod-keycloak-app-keycloak-theme-0.3.0.jar
       #   -DpomFile=./pom.xml 
       #   -DrepositoryId=github 
       #   -Durl=https://maven.pkg.github.com/agronod/keycloakify
       #   -Dtoken=${{ secrets.GITHUB_TOKEN }}
       run: mvn deploy:deploy-file \
-        -DgroupId=keycloak_theme \
+        -DgroupId=agronod \
         -DartifactId=keycloak_theme \
         -Dversion=0.1 \
-        -Dpackaging=<type-of-packaging> \
-        -Dfile=./build_keycloak/target/*keycloak-theme*.jar \
+        -Dpackaging=jar \
+        -Dfile=./build_keycloak/target/agronod-keycloak-app-keycloak-theme-0.3.0.jar \
         -Durl=https://maven.pkg.github.com/agronod/keycloakify \
         -Dtoken=${{ secrets.GITHUB_TOKEN }}
       # env:
@@ -177,11 +177,11 @@ jobs:
   #     with:
   #       name: keycloak_theme
   #   - run: mkdir jars
-  #   - run: mv *keycloak-theme*.jar jars/keycloak-theme.jar
+  #   - run: mv agronod-keycloak-app-keycloak-theme-0.3.0.jar jars/keycloak-theme.jar
   #   - uses: actions/download-artifact@v2
   #     with:
   #       name: standalone_keycloak_theme
-  #   - run: mv *keycloak-theme*.jar jars/standalone-keycloak-theme.jar
+  #   - run: mv agronod-keycloak-app-keycloak-theme-0.3.0.jar jars/standalone-keycloak-theme.jar
   #   - uses: softprops/action-gh-release@v1
   #     with:
   #       name: Release v${{ needs.check_if_version_upgraded.outputs.to_version }}
@@ -205,11 +205,11 @@ jobs:
       with:
         name: keycloak_theme
     - run: mkdir jars
-    - run: mv *keycloak-theme*.jar jars/keycloak-theme.jar
+    - run: mv agronod-keycloak-app-keycloak-theme-0.3.0.jar jars/keycloak-theme.jar
     - uses: actions/download-artifact@v2
       with:
         name: standalone_keycloak_theme
-    - run: mv *keycloak-theme*.jar jars/standalone-keycloak-theme.jar
+    - run: mv agronod-keycloak-app-keycloak-theme-0.3.0.jar jars/standalone-keycloak-theme.jar
     - uses: softprops/action-gh-release@v1
       with:
         name: Release v${{ needs.check_if_version_upgraded.outputs.to_version }}

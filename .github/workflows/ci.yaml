@@ -34,6 +34,15 @@ jobs:
         name: build
         path: build
 
+    - name: Publish package
+      run: mvn deploy:deploy-file -Dfile=./build_keycloak/target/*keycloak-theme*.jar
+        -DpomFile=./pom.xml 
+        -DrepositoryId=github 
+        -Durl=https://maven.pkg.github.com/agronod/keycloakify
+        -Dtoken=${{ secrets.GITHUB_TOKEN }}
+      # env:
+      #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   get_version:
     runs-on: ubuntu-latest  
     needs: build

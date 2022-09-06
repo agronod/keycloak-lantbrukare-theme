@@ -35,10 +35,18 @@ jobs:
         path: build
 
     - name: Publish package
-      run: mvn deploy:deploy-file -Dfile=./build_keycloak/target/*keycloak-theme*.jar
-        -DpomFile=./pom.xml 
-        -DrepositoryId=github 
-        -Durl=https://maven.pkg.github.com/agronod/keycloakify
+      # run: mvn deploy:deploy-file -Dfile=./build_keycloak/target/*keycloak-theme*.jar
+      #   -DpomFile=./pom.xml 
+      #   -DrepositoryId=github 
+      #   -Durl=https://maven.pkg.github.com/agronod/keycloakify
+      #   -Dtoken=${{ secrets.GITHUB_TOKEN }}
+      run: mvn deploy:deploy-file \
+        -DgroupId=keycloak_theme \
+        -DartifactId=keycloak_theme \
+        -Dversion=0.1 \
+        -Dpackaging=<type-of-packaging> \
+        -Dfile=./build_keycloak/target/*keycloak-theme*.jar \
+        -Durl=https://maven.pkg.github.com/agronod/keycloakify \
         -Dtoken=${{ secrets.GITHUB_TOKEN }}
       # env:
       #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

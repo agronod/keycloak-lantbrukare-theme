@@ -45,7 +45,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GITHUBTOKEN }}
 
       - name: Identify new version
         uses: mathieudutour/github-tag-action@v5.5
@@ -53,7 +53,7 @@ jobs:
         with:
           # pre_release_branches: develop
           # append_to_pre_release_tag: prerelease
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUBTOKEN }}
 
   # check_if_version_upgraded:
   #   name: Check if version upgrade
@@ -93,7 +93,7 @@ jobs:
   #   - run: echo $(node -e 'console.log(require("url").parse(require("./package.json").homepage).host)') > build/CNAME
   #   - run: git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${{github.repository}}.git
   #     env:
-  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
   #   - run: npx -y -p gh-pages@3.1.0 gh-pages -d build -u "github-actions-bot <actions@github.com>"
 
   # docker:
@@ -177,7 +177,7 @@ jobs:
   #       draft: false
   #       prerelease: ${{ needs.check_if_version_upgraded.outputs.is_release_beta == 'true' }}
   #     env:
-  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #       GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
 
   create_github_release:
     runs-on: ubuntu-latest
@@ -205,5 +205,5 @@ jobs:
         draft: false
         prerelease: ${{ needs.check_if_version_upgraded.outputs.is_release_beta == 'true' }}
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}        
+        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}        
         

@@ -1,11 +1,13 @@
 # build environment
-FROM timbru31/java-node:11-jre-14 as build
-
-RUN apt-get -qq update && apt-get -q -y install maven unzip
-
+FROM node:14-alpine as build
 WORKDIR /app
 COPY package.json yarn.lock ./
-
 RUN yarn install --frozen-lockfile
 COPY . .
-RUN yarn run keycloak
+RUN yarn build
+
+# production environment
+FROM nginx:stable-alpine
+COPY --from=build /app/build /usr/share/nginx/html
+COPY --from=build /app/nginx.conf /etc/nginx/conf.d/default.conf
+CMD nginx -g 'daemon off;'

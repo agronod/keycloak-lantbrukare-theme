@@ -1,15 +1,16 @@
-body { 
+/* Keycloak css */
+#root {
+    display: flex !important;
+    height: 100% !important;
     background: url(./vall_bakgrund.png) !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
-    background-position: center !important;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji" !important;
-    font-size: 16px;
+    background-position: center !important;    
 }
-
-/* Keycloak css */
 .my-login {
-    padding-top: 1px;
+    width: 100%;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji" !important;
+    font-size: 16px;    
 }
 .my-form-card { 
     background-color: #fff;

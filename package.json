@@ -1,8 +1,8 @@
 {
   "name": "agronod-keycloak-app",
-  "homepage": "https://demo-app.keycloakify.dev",
-  "version": "0.3.0",
-  "description": "A demo project for keycloakify",
+  "homepage": "https://agronod.com",
+  "version": "0.3.1",
+  "description": "Agronod login",
   "repository": {
     "type": "git",
     "url": "git://github.com/garronej/agronod-keycloak-app.git"

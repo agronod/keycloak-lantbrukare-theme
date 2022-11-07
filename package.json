@@ -1,7 +1,7 @@
 {
   "name": "agronod-keycloak-app",
   "homepage": "https://agronod.com",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Agronod login",
   "repository": {
     "type": "git",

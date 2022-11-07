@@ -20,7 +20,8 @@ export const Login = memo(
 
     console.log(kcContext, props);
 
-    const realmPassword = realm.password && false; // always disable as unable to set from keycloak config
+    const realmPassword = process.env.REACT_APP_PASSWORD === "enabled"; // always disable as unable to set from keycloak config
+    // const realmPassword = realm.password && false; // always disable as unable to set from keycloak config
 
     const { msg, msgStr } = getMsg(kcContext);
 
@@ -85,6 +86,39 @@ export const Login = memo(
                   eller en annan enhet.
                 </p>
               </header>
+
+              {social.providers !== undefined && (
+                <div
+                  id="kc-social-providers"
+                  className={cx(
+                    props.kcFormSocialAccountContentClass,
+                    props.kcFormSocialAccountClass
+                  )}
+                >
+                  <ul
+                    className={cx(
+                      props.kcFormSocialAccountListClass,
+                      social.providers.length > 4 &&
+                        props.kcFormSocialAccountDoubleListClass
+                    )}
+                  >
+                    {social.providers.map((p) => (
+                      <li
+                        key={p.providerId}
+                        className={cx(props.kcFormSocialAccountListLinkClass)}
+                      >
+                        <a
+                          href={p.loginUrl}
+                          id={`zocial-${p.alias}`}
+                          className={cx("zocial", p.providerId)}
+                        >
+                          <span>{p.displayName}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
               {realmPassword && (
                 <form
@@ -155,7 +189,7 @@ export const Login = memo(
                       props.kcFormSettingClass
                     )}
                   >
-                    <div id="kc-form-options">
+                    {/* <div id="kc-form-options">
                       {realm.rememberMe && !usernameEditDisabled && (
                         <div className="checkbox">
                           <label>
@@ -174,8 +208,8 @@ export const Login = memo(
                           </label>
                         </div>
                       )}
-                    </div>
-                    <div className={cx(props.kcFormOptionsWrapperClass)}>
+                    </div> */}
+                    {/* <div className={cx(props.kcFormOptionsWrapperClass)}>
                       {realm.resetPasswordAllowed && (
                         <span>
                           <a tabIndex={5} href={url.loginResetCredentialsUrl}>
@@ -183,7 +217,7 @@ export const Login = memo(
                           </a>
                         </span>
                       )}
-                    </div>
+                    </div> */}
                   </div>
                   <div
                     id="kc-form-buttons"
@@ -217,38 +251,6 @@ export const Login = memo(
                 </form>
               )}
             </div>
-            {social.providers !== undefined && (
-              <div
-                id="kc-social-providers"
-                className={cx(
-                  props.kcFormSocialAccountContentClass,
-                  props.kcFormSocialAccountClass
-                )}
-              >
-                <ul
-                  className={cx(
-                    props.kcFormSocialAccountListClass,
-                    social.providers.length > 4 &&
-                      props.kcFormSocialAccountDoubleListClass
-                  )}
-                >
-                  {social.providers.map((p) => (
-                    <li
-                      key={p.providerId}
-                      className={cx(props.kcFormSocialAccountListLinkClass)}
-                    >
-                      <a
-                        href={p.loginUrl}
-                        id={`zocial-${p.alias}`}
-                        className={cx("zocial", p.providerId)}
-                      >
-                        <span>{p.displayName}</span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
           </div>
         }
         infoNode={

@@ -1,7 +1,7 @@
 {
   "name": "agronod-keycloak-app",
   "homepage": "https://agronod.com",
-  "version": "0.3.1",
+  "version": "0.4.1",
   "description": "Agronod login",
   "repository": {
     "type": "git",
@@ -9,7 +9,9 @@
   },
   "scripts": {
     "build": "react-scripts build",
+    "build-with-password": "set REACT_APP_PASSWORD=enabled && react-scripts build",
     "keycloak": "yarn build && build-keycloak-theme",
+    "keycloak-with-password": "yarn run build-with-password && build-keycloak-theme",
     "start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

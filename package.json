@@ -1,28 +1,22 @@
 {
   "name": "agronod-keycloak-app",
   "homepage": "https://agronod.com",
-  "version": "0.4.3",
-  "description": "Agronod login",
+  "version": "0.0.1",
+  "description": "Keycloak Lantbrukare Theme",
   "repository": {
     "type": "git",
-    "url": "git://github.com/garronej/agronod-keycloak-app.git"
+    "url": "git://github.com/agronod/keycloak-lantbrukare-theme.git"
   },
   "scripts": {
     "build": "react-scripts build",
-    "build-with-password": "set REACT_APP_PASSWORD=enabled && react-scripts build",
-    "keycloak": "yarn build && build-keycloak-theme",
-    "keycloak-with-password": "yarn run build-with-password && build-keycloak-theme",
+    "keycloak": "npm build && build-keycloak-theme",
     "start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "keycloakify": {
-    "extraPages": [
-      "my-extra-page-1.ftl",
-      "my-extra-page-2.ftl"
-    ]
+    "extraPages": []
   },
-  "author": "u/garronej",
   "license": "MIT",
   "keywords": [],
   "dependencies": {

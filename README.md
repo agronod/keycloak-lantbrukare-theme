@@ -1,4 +1,4 @@
-# Keycloak custom login
+# Keycloak Lantbrukare Theme
 
 Generates a custom keycloak theme based on https://github.com/InseeFrLab/keycloakify
 

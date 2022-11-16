@@ -8,9 +8,9 @@
     "url": "git://github.com/agronod/keycloak-lantbrukare-theme.git"
   },
   "scripts": {
-    "build": "react-scripts build",
-    "keycloak": "npm build && build-keycloak-theme",
     "start": "react-scripts start",
+    "build": "react-scripts build",
+    "keycloak": "npm run build && build-keycloak-theme",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

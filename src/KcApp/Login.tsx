@@ -81,9 +81,11 @@ export const Login = memo(
               <header className="login__header">
                 <h1 className="login__title">Välkommen till Agrosfär</h1>
                 <p className="login__description">
-                  Agrosfär är lantbrukets automatiska klimatberäkningsverktyg
-                  för ett effektivt klimatarbete. Logga in med BankID på denna
-                  eller en annan enhet.
+                  <div style={{ marginBottom: "0px" }}>
+                    Agrosfär är lantbrukets automatiska klimatberäkningsverktyg
+                    för ett effektivt klimatarbete.
+                  </div>
+                  Logga in med BankID på denna eller en annan enhet.
                 </p>
               </header>
 

@@ -14,6 +14,7 @@ ReactDOM.render(
       kcContext={kcContext}
       {...{
         ...defaultKcProps,
+        // NOTE: The classes are defined in ./KcApp.css
         kcFormCardClass: "my-form-card",
         kcLoginClass: "my-login",
         kcFormHeaderClass: "",
@@ -21,6 +22,7 @@ ReactDOM.render(
         kcFormSocialAccountContentClass: "my-form-social-account-content",
         kcFormSocialAccountListClass: "",
         kcFormSocialAccountListLinkClass: "my-form-social-account-list-link",
+        kcFormOptionsWrapperClass: "my-form-options-wrapper",
         // kcHeaderWrapperClass: "my-header-wrapper",
         // kcFormSocialAccountContentClass: "my-form-social-account-content",
       }}

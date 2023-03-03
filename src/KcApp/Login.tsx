@@ -18,7 +18,7 @@ export const Login = memo(
       registrationDisabled,
     } = kcContext;
 
-    console.log(kcContext, props);
+    // console.log(kcContext, props);
 
     const realmPassword = process.env.REACT_APP_PASSWORD === "enabled"; // always disable as unable to set from keycloak config
     // const realmPassword = realm.password && false; // always disable as unable to set from keycloak config

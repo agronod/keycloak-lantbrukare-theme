@@ -1,22 +1,29 @@
-import { memo } from "react";
 import type { KcContext } from "./kcContext";
 import { Login } from "./Login";
-import { Info } from "keycloakify/lib/components/Info";
-import { Error } from "keycloakify/lib/components/Error";
-import { KcApp as KcAppBase } from "keycloakify/lib/components/KcApp";
-import { KcProps } from "keycloakify";
+import KcAppBase, { defaultKcProps } from "keycloakify";
+import { useI18n } from "./i18n";
 
-export const KcApp = memo(
-  ({ kcContext, ...props }: { kcContext: KcContext } & KcProps) => {
-    switch (kcContext.pageId) {
-      case "login.ftl":
-        return <Login {...{ kcContext, ...props }} />;
-      case "info.ftl":
-        return <Info {...{ kcContext, ...props }} />;
-      case "error.ftl":
-        return <Error {...{ kcContext, ...props }} />;
-      default:
-        return <KcAppBase {...{ kcContext, ...props }} />;
-    }
+export type Props = {
+  kcContext: KcContext;
+};
+
+export default function KcApp({ kcContext }: Props) {
+  const i18n = useI18n({
+    kcContext,
+  });
+
+  if (i18n === null) {
+    return null;
   }
-);
+
+  const props = {
+    i18n,
+    ...defaultKcProps,
+  };
+  switch (kcContext.pageId) {
+    case "login.ftl":
+      return <Login {...{ kcContext, ...props }} />;
+    default:
+      return <KcAppBase {...{ kcContext, ...props }} />;
+  }
+}

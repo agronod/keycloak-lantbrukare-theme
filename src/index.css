@@ -1,4 +1,5 @@
 /* Keycloak css */
+/* TODO: we probably don't need all of these styles in the future if we will use MUI */
 html,
 body {
   height: 100%;

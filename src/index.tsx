@@ -1,32 +1,17 @@
-import ReactDOM from "react-dom";
-import { App } from "./App";
-import { kcContext } from "./KcApp/kcContext";
-import { KcApp } from "./KcApp";
-import { defaultKcProps } from "keycloakify";
-
 import "./index.css";
+import { createRoot } from "react-dom/client";
+import { StrictMode, Suspense } from "react";
+import { kcContext } from "./KcApp/kcContext";
+import { ThemeProvider, agronodTheme } from "@agronod/mui-components";
+import { App } from "App";
+import KcApp from "KcApp/KcApp";
 
-ReactDOM.render(
-  kcContext === undefined ? (
-    <App />
-  ) : (
-    <KcApp
-      kcContext={kcContext}
-      {...{
-        ...defaultKcProps,
-        // NOTE: The classes are defined in ./KcApp.css
-        kcFormCardClass: "my-form-card",
-        kcLoginClass: "my-login",
-        kcFormHeaderClass: "",
-        kcFormSocialAccountClass: "my-form-social-account",
-        kcFormSocialAccountContentClass: "my-form-social-account-content",
-        kcFormSocialAccountListClass: "",
-        kcFormSocialAccountListLinkClass: "my-form-social-account-list-link",
-        kcFormOptionsWrapperClass: "my-form-options-wrapper",
-        // kcHeaderWrapperClass: "my-header-wrapper",
-        // kcFormSocialAccountContentClass: "my-form-social-account-content",
-      }}
-    />
-  ),
-  document.getElementById("root")
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <Suspense>
+      <ThemeProvider options={agronodTheme}>
+        {kcContext === undefined ? <App /> : <KcApp kcContext={kcContext} />}
+      </ThemeProvider>
+    </Suspense>
+  </StrictMode>
 );

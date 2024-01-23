@@ -14,17 +14,6 @@ export const { kcContext } = getKcContext({
         password: false,
         internationalizationEnabled: false,
       },
-      social: {
-        displayInfo: true,
-        providers: [
-          {
-            loginUrl: "string",
-            alias: "string",
-            providerId: "string;",
-            displayName: "test",
-          },
-        ],
-      },
     },
     {
       //NOTE: You will either use register.ftl or register-user-profile.ftl, not both, more info in Keycloakify's README

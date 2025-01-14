@@ -2,6 +2,16 @@
 
 Custom keycloak theme based on <https://github.com/InseeFrLab/keycloakify>
 
+## Prevent user login
+
+1. Set {realm}/Realm settings/Themes/Login themes=agronod-lantbrukare-theme-maintenance
+2. Clear {realm}/Authentication/Flows(Browser)/Identity Provider Redirector(visma) - Config/Default Identity Provider
+
+### Enable user login
+
+1. Set {realm}/Realm settings/Themes/Login themes=agronod-lantbrukare-theme
+2. Set {realm}/Authentication/Flows(Browser)/Identity Provider Redirector(visma) - Config/Default Identity Provider=visma
+
 ## Running locally
 
 Edit (do not forget to undo before publishing)

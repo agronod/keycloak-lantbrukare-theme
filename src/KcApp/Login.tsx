@@ -35,30 +35,9 @@ export const Login = memo(
               <Box id="kc-form-wrapper">
                 {social.providers !== undefined && (
                   <Box id="kc-social-providers">
-                    {/* TODO: check can we improve cancel request ui and handling */}
-                    <List>
-                      {social.providers.map((p) =>
-                        p.alias === "visma" ? (
-                          <Stack
-                            component={ListItem}
-                            gap={2}
-                            alignItems="center"
-                            key={p.providerId}
-                          >
-                            <Typography variant="h4">Du är utloggad</Typography>
-                            <Button variant="contained" href={p.loginUrl}>
-                              Logga in
-                            </Button>
-                          </Stack>
-                        ) : (
-                          <ListItem key={p.providerId}>
-                            <Link href={p.loginUrl} id={`zocial-${p.alias}`}>
-                              {p.displayName}
-                            </Link>
-                          </ListItem>
-                        )
-                      )}
-                    </List>
+                    Underhåll pågår, försök igen senare.
+                    <br />
+                    Vi ber om ursäkt för besväret.
                   </Box>
                 )}
               </Box>

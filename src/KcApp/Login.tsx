@@ -3,15 +3,7 @@ import { KcContextBase, KcProps } from "keycloakify";
 import Template from "keycloakify/lib/Template";
 import BaseLayout from "components/BaseLayout/BaseLayout";
 import type { I18n } from "./i18n";
-import {
-  Box,
-  Button,
-  Link,
-  List,
-  ListItem,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box } from "@mui/material";
 
 export const Login = memo(
   ({

@@ -1,4 +1,4 @@
-import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 import Logo from "../Logo";
 import AgronodBackgroundDesktop from "../../assets/agronodBackgroundDesktop.png";
 import AgronodBackground from "../../assets/agronodBackground.svg";
@@ -6,7 +6,6 @@ import AgronodYellowBackground from "../../assets/agronodYellowBackground.png";
 
 const AsideLogo = () => {
     const theme = useTheme();
-    const isSmallLaptop = useMediaQuery(theme.breakpoints.down("lg"));
     const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
     return (
         <>

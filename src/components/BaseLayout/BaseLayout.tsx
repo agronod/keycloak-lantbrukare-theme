@@ -2,7 +2,8 @@ import { Box, Theme } from "@mui/material";
 import AsideLogoSection from "../AsideLogoSection/AsideLogoSection";
 import { ThemeProvider, agronodTheme } from "@agronod/mui-components";
 
-const BaseLayout = () => {
+// @ts-ignore
+const BaseLayout = ({ children }: { children: JSX.Element }) => {
     return (
         <ThemeProvider options={agronodTheme}>
             <Box
@@ -18,6 +19,8 @@ const BaseLayout = () => {
                 })}
             >
                 <AsideLogoSection />
+
+                {/* {children} */}
             </Box>
         </ThemeProvider>
     );

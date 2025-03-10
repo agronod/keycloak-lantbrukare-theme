@@ -11,17 +11,7 @@ const kcContextExtension: KcContextExtension = {
         ...kcEnvDefaults
     }
 };
-const kcContextExtensionPerPage: KcContextExtensionPerPage = {
-    "mfa-validation.ftl": {
-        auth: {
-            attemptedUsername: "user@user.com"
-        },
-        url: {
-            loginRestartFlowUrl: "#",
-            loginAction: "#"
-        }
-    }
-};
+const kcContextExtensionPerPage: KcContextExtensionPerPage = {};
 
 export const { getKcContextMock } = createGetKcContextMock({
     kcContextExtension,

@@ -11,8 +11,6 @@ const UserProfileFormFields = lazy(
     () => import("keycloakify/login/UserProfileFormFields")
 );
 const Login = lazy(() => import("./pages/Login"));
-const LoginResetPassword = lazy(() => import("./pages/LoginResetPassword"));
-const MfaValidation = lazy(() => import("./pages/MfaValidation"));
 const doMakeUserConfirmPassword = true;
 
 export default function KcPage(props: { kcContext: KcContext }) {
@@ -29,22 +27,6 @@ export default function KcPage(props: { kcContext: KcContext }) {
                         case "login.ftl":
                             return (
                                 <Login
-                                    {...{ kcContext, i18n, classes }}
-                                    Template={Template}
-                                    doUseDefaultCss={false}
-                                />
-                            );
-                        case "login-reset-password.ftl":
-                            return (
-                                <LoginResetPassword
-                                    {...{ kcContext, i18n, classes }}
-                                    Template={Template}
-                                    doUseDefaultCss={false}
-                                />
-                            );
-                        case "mfa-validation.ftl":
-                            return (
-                                <MfaValidation
                                     {...{ kcContext, i18n, classes }}
                                     Template={Template}
                                     doUseDefaultCss={false}

@@ -27,9 +27,19 @@ export const Login = memo(
               <Box id="kc-form-wrapper">
                 {social.providers !== undefined && (
                   <Box id="kc-social-providers">
-                    Underhåll pågår, försök igen senare.
+                    <b>Hej!</b>
                     <br />
-                    Vi ber om ursäkt för besväret.
+                    <br />I dag genomför vi en teknisk uppdatering av Agrosfär
+                    och Agronod-plattformen. Därför kan du just nu inte logga
+                    in. Du är varmt välkommen tillbaka så snart uppdateringen är
+                    klar.
+                    <br />
+                    <br />
+                    Har du frågor? Hör gärna av dig till oss på
+                    <b>010-18 61 060</b>
+                    eller
+                    <a href="mailto:support@agronod.com">support@agronod.com</a>
+                    .
                   </Box>
                 )}
               </Box>
@@ -38,5 +48,5 @@ export const Login = memo(
         />
       </BaseLayout>
     );
-  }
+  },
 );

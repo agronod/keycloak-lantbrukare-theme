@@ -25,23 +25,21 @@ export const Login = memo(
           formNode={
             <Box id="kc-form">
               <Box id="kc-form-wrapper">
-                {social.providers !== undefined && (
-                  <Box id="kc-social-providers">
-                    <b>Hej!</b>
-                    <br />
-                    <br />I dag genomför vi en teknisk uppdatering av Agrosfär
-                    och Agronod-plattformen. Därför kan du just nu inte logga
-                    in. Du är varmt välkommen tillbaka så snart uppdateringen är
-                    klar.
-                    <br />
-                    <br />
-                    Har du frågor? Hör gärna av dig till oss på
-                    <b>010-18 61 060</b>
-                    eller
-                    <a href="mailto:support@agronod.com">support@agronod.com</a>
-                    .
-                  </Box>
-                )}
+                <span>
+                  <b>Hej!</b>
+                  <br />
+                  <br />I dag genomför vi en teknisk uppdatering av Agrosfär
+                  och Agronod-plattformen. Därför kan du just nu inte logga
+                  in. Du är varmt välkommen tillbaka så snart uppdateringen är
+                  klar.
+                  <br />
+                  <br />
+                  Har du frågor? Hör gärna av dig till oss på
+                  {" "}<b>010-18 61 060</b>
+                  {" "}eller
+                  {" "}<a href="mailto:support@agronod.com">support@agronod.com</a>
+                  .
+                </span>
               </Box>
             </Box>
           }

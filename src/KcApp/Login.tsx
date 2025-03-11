@@ -11,7 +11,6 @@ export const Login = memo(
     i18n,
     ...props
   }: { kcContext: KcContextBase.Login; i18n: I18n } & KcProps) => {
-    const { social } = kcContext;
     //In this theme we are using Login to show just in cancel request, otherwwise we skip it. We left just necessary ui parts in this teme, other functionality can be added and styled later if needed from templates.
     return (
       <BaseLayout>

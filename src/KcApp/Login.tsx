@@ -34,7 +34,7 @@ export const Login = memo(
                   <br />
                   <br />
                   Har du frågor? Hör gärna av dig till oss på
-                  {" "}<b>010-18 61 060</b>
+                  {" "}<span style={{whiteSpace: "nowrap"}}><b>010-18 61 060</b></span>
                   {" "}eller
                   {" "}<a href="mailto:support@agronod.com">support@agronod.com</a>
                   .

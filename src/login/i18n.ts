@@ -20,16 +20,8 @@ const { useI18n, ofTypeI18n } = i18nBuilder
                 "Please enter your username or email address. You will receive a link to create a new password via email.",
             emailInstruction:
                 "Please enter your email address. You will receive a link to create a new password via email.",
-            mfaValidationTitle: "Verify your email address",
-            mfaValidationSubtitle:
-                "A verification code has been sent to your email address. If you don't see it in your inbox, it may have landed in your spam folder.",
-            mfaCode: "Verification code",
-            doMfaValidation: "Log in",
-            mfaVerificationInfoText: "Didn't receive a verification code?",
-            mfaVerficationCodeLink: "Resend code",
             // Authentication redirect messages
-            samlPostFormTitle: "Taking you to sign in...",
-            authenticateTitle: "One moment please...",
+            "saml.post-form.title": "Taking you to sign in...",
             pageExpiredTitle: "Session timed out",
             pageExpiredMsg1:
                 "Your session has timed out for security reasons. To start over,",
@@ -53,16 +45,8 @@ const { useI18n, ofTypeI18n } = i18nBuilder
             emailInstructionUsername:
                 "Ange ditt användarnamn eller e-postadress. Du kommer att få en länk för att skapa ett nytt lösenord via e-post.",
             emailInstruction: "Du får ett e-postmeddelande med instruktioner.",
-            mfaValidationTitle: "Verifiera din e-postadress",
-            mfaValidationSubtitle:
-                "En verifieringskod har skickats till din e-postadress. Hittar du den inte i inkorgen kan den ha hamnat som skräppost.",
-            mfaCode: "Verifieringskod",
-            doMfaValidation: "Logga in",
-            mfaVerificationInfoText: "Har du inte fått en verifieringskod?",
-            mfaVerficationCodeLink: "Skicka ny kod",
             // Authentication redirect messages
-            samlPostFormTitle: "Vi tar dig till inloggningen...",
-            authenticateTitle: "Ett ögonblick...",
+            "saml.post-form.title": "Vi tar dig till inloggningen...",
             pageExpiredTitle: "Sessionen har gått ut",
             pageExpiredMsg1:
                 "Din session har gått ut av säkerhetsskäl. För att börja om,",

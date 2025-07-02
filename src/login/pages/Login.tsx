@@ -2,20 +2,23 @@ import { FormEventHandler, useEffect, useState } from "react";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
-import { Box, Button, FormControl, FormLabel, Link, Stack, TextField, Typography, useTheme } from "@mui/material";
+import { Box, Button, FormControl, FormLabel, Link, Stack, TextField, Typography, useTheme, Divider } from "@mui/material";
 import { useConstCallback } from "powerhooks/useConstCallback";
+import { clsx } from "keycloakify/tools/clsx";
+import { kcSanitize } from "keycloakify/lib/kcSanitize";
+import { getKcClsx } from "keycloakify/login/lib/kcClsx";
 
 export default function Login(props: PageProps<Extract<KcContext, { pageId: "login.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
     const [username, setUsername] = useState("");
     const theme = useTheme();
 
-    // const { kcClsx } = getKcClsx({
-    //     doUseDefaultCss,
-    //     classes
-    // });
+    const { kcClsx } = getKcClsx({
+        doUseDefaultCss,
+        classes
+    });
 
-    const { realm, url, usernameHidden, login, auth, registrationDisabled, messagesPerField } = kcContext;
+    const { realm, url, usernameHidden, login, auth, registrationDisabled, messagesPerField, social } = kcContext;
 
     const { msg, msgStr } = i18n;
 
@@ -63,37 +66,39 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
             //         </div>
             //     </div>
             // }
-            // socialProvidersNode={
-            //     <>
-            //         {realm.password && social?.providers !== undefined && social.providers.length !== 0 && (
-            //             <div id="kc-social-providers" className={kcClsx("kcFormSocialAccountSectionClass")}>
-            //                 <hr />
-            //                 <h2>{msg("identity-provider-login-label")}</h2>
-            //                 <ul className={kcClsx("kcFormSocialAccountListClass", social.providers.length > 3 && "kcFormSocialAccountListGridClass")}>
-            //                     {social.providers.map((...[p, , providers]) => (
-            //                         <li key={p.alias}>
-            //                             <a
-            //                                 id={`social-${p.alias}`}
-            //                                 className={kcClsx(
-            //                                     "kcFormSocialAccountListButtonClass",
-            //                                     providers.length > 3 && "kcFormSocialAccountGridItem"
-            //                                 )}
-            //                                 type="button"
-            //                                 href={p.loginUrl}
-            //                             >
-            //                                 {p.iconClasses && <i className={clsx(kcClsx("kcCommonLogoIdP"), p.iconClasses)} aria-hidden="true"></i>}
-            //                                 <span
-            //                                     className={clsx(kcClsx("kcFormSocialAccountNameClass"), p.iconClasses && "kc-social-icon-text")}
-            //                                     dangerouslySetInnerHTML={{ __html: kcSanitize(p.displayName) }}
-            //                                 ></span>
-            //                             </a>
-            //                         </li>
-            //                     ))}
-            //                 </ul>
-            //             </div>
-            //         )}
-            //     </>
-            // }
+            socialProvidersNode={
+                <>
+                    {realm.password && social?.providers !== undefined && social.providers.length !== 0 && (
+                        <Box sx={{ mt: 3, display: "none" }}>
+                            <Divider sx={{ mb: 2 }} />
+                            <Typography variant="h6" sx={{ mb: 2 }}>
+                                {msg("identity-provider-login-label")}
+                            </Typography>
+                            <Stack spacing={2}>
+                                {social.providers.map(p => (
+                                    <Button
+                                        key={p.alias}
+                                        id={`social-${p.alias}`}
+                                        variant="outlined"
+                                        fullWidth
+                                        href={p.loginUrl}
+                                        sx={{
+                                            justifyContent: "flex-start",
+                                            textTransform: "none",
+                                            py: 1.5
+                                        }}
+                                        startIcon={
+                                            p.iconClasses && <i className={clsx(kcClsx("kcCommonLogoIdP"), p.iconClasses)} aria-hidden="true" />
+                                        }
+                                    >
+                                        <span dangerouslySetInnerHTML={{ __html: kcSanitize(p.displayName) }} />
+                                    </Button>
+                                ))}
+                            </Stack>
+                        </Box>
+                    )}
+                </>
+            }
         >
             <div id="kc-form">
                 <div id="kc-form-wrapper">

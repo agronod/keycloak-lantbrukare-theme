@@ -1,8 +1,11 @@
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import Logo from "../Logo";
-import AgronodBackgroundDesktop from "../../assets/agronodBackgroundDesktop.png";
-import AgronodBackground from "../../assets/agronodBackground.svg";
-import AgronodYellowBackground from "../../assets/agronodYellowBackground.png";
+import Picture from "../Picture";
+import agronodBackgroundDesktopWebP from "../../assets/agronodBackgroundDesktop.webp";
+import agronodBackgroundDesktopPNG from "../../assets/agronodBackgroundDesktop.png";
+import agronodBackground from "../../assets/agronodBackground.svg";
+import agronodYellowBackgroundWebP from "../../assets/agronodYellowBackground.webp";
+import agronodYellowBackgroundPNG from "../../assets/agronodYellowBackground.png";
 
 const AsideLogo = () => {
     const theme = useTheme();
@@ -28,7 +31,7 @@ const AsideLogo = () => {
                     </Box>
                     <Box
                         sx={theme => ({
-                            backgroundImage: `url(${AgronodBackground})`,
+                            backgroundImage: `url(${agronodBackground})`,
                             backgroundColor: theme.palette.primary.main,
                             backgroundRepeat: "no-repeat",
                             backgroundSize: "cover",
@@ -44,20 +47,46 @@ const AsideLogo = () => {
                         backgroundColor: theme.palette.primary.main,
                         display: "flex",
                         flexDirection: "column",
-                        background: `url(${AgronodYellowBackground}) center center repeat , url(${AgronodBackgroundDesktop}) center center no-repeat`,
-                        backgroundSize: "cover, 100% 99%",
                         width: "100%",
                         maxWidth: "100%",
                         textAlign: "left",
-                        marginBottom: 5,
-                        position: "fixed",
-                        top: 0,
-                        backgroundPosition: "center",
-                        height: "219px",
-                        padding: 3
+                        height: "100vh",
+                        position: "relative",
+                        padding: 3,
+                        overflow: "hidden"
                     })}
                 >
-                    <Logo size="small" />
+                    <Picture
+                        webpSrc={agronodBackgroundDesktopWebP}
+                        fallbackSrc={agronodBackgroundDesktopPNG}
+                        alt="Background"
+                        style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "100%",
+                            height: "99%",
+                            objectFit: "cover",
+                            zIndex: 1
+                        }}
+                    />
+                    <Picture
+                        webpSrc={agronodYellowBackgroundWebP}
+                        fallbackSrc={agronodYellowBackgroundPNG}
+                        alt=""
+                        style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                            zIndex: 2
+                        }}
+                    />
+                    <Box sx={{ position: "relative", zIndex: 3 }}>
+                        <Logo size="small" />
+                    </Box>
                 </Box>
             )}
         </>

@@ -13,8 +13,8 @@ const BaseLayout = ({ children }: { children: JSX.Element }) => {
                     justifyContent: "stretch",
                     [theme.breakpoints.down("sm")]: {
                         display: "block",
-                        height: "auto",
-                        overflow: "auto"
+                        height: "100dvh",
+                        overflow: "hidden"
                     }
                 })}
             >

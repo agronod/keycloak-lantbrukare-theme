@@ -59,3 +59,4 @@ jspm_packages
 .aider*
 
 **/.local
+.claude/*.local*

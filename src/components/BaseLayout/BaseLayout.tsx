@@ -26,6 +26,7 @@ const BaseLayout = (props: { children: JSX.Element }) => {
                         borderRadius: 4,
                         padding: theme.spacing(8),
                         minWidth: "540px",
+                        maxWidth: "540px",
                         [theme.breakpoints.down("sm")]: {
                             minWidth: "350px",
                             transform: "translate(-50%, -10%)",

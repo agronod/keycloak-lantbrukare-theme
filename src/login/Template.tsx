@@ -53,7 +53,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     const { isReadyToRender } = useInitialize({ kcContext, doUseDefaultCss });
 
     if (!isReadyToRender) {
-        return null;
+        return <>Test</>;
     }
 
     return (

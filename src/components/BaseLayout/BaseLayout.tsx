@@ -7,17 +7,12 @@ const BaseLayout = (props: { children: JSX.Element }) => {
     return (
         <ThemeProvider options={agronodTheme}>
             <Box
-                sx={(theme: Theme) => ({
+                sx={() => ({
                     display: "grid",
                     minHeight: "100dvh",
                     backgroundColor: "red",
                     justifyContent: "stretch",
-                    position: "relative",
-                    [theme.breakpoints.down("sm")]: {
-                        display: "block",
-                        height: "100dvh",
-                        overflow: "hidden"
-                    }
+                    position: "relative"
                 })}
             >
                 <AsideLogoSection />
@@ -30,7 +25,13 @@ const BaseLayout = (props: { children: JSX.Element }) => {
                         transform: "translate(-50%, -50%)",
                         borderRadius: 4,
                         padding: theme.spacing(8),
-                        maxWidth: "464px"
+                        minWidth: "540px",
+                        [theme.breakpoints.down("sm")]: {
+                            minWidth: "350px",
+                            transform: "translate(-50%, -10%)",
+                            top: "auto",
+                            bottom: 0
+                        }
                     })}
                 >
                     {props.children}

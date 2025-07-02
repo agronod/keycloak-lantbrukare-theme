@@ -4,19 +4,19 @@ import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import { Box, Button, FormControl, FormLabel, Link, Stack, TextField, Typography, useTheme, Divider } from "@mui/material";
 import { useConstCallback } from "powerhooks/useConstCallback";
-import { clsx } from "keycloakify/tools/clsx";
-import { kcSanitize } from "keycloakify/lib/kcSanitize";
-import { getKcClsx } from "keycloakify/login/lib/kcClsx";
+// import { clsx } from "keycloakify/tools/clsx";
+// import { kcSanitize } from "keycloakify/lib/kcSanitize";
+// import { getKcClsx } from "keycloakify/login/lib/kcClsx";
 
 export default function Login(props: PageProps<Extract<KcContext, { pageId: "login.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
     const [username, setUsername] = useState("");
     const theme = useTheme();
 
-    const { kcClsx } = getKcClsx({
-        doUseDefaultCss,
-        classes
-    });
+    // const { kcClsx } = getKcClsx({
+    //     doUseDefaultCss,
+    //     classes
+    // });
 
     const { realm, url, usernameHidden, login, auth, registrationDisabled, messagesPerField, social } = kcContext;
 
@@ -66,39 +66,39 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
             //         </div>
             //     </div>
             // }
-            socialProvidersNode={
-                <>
-                    {realm.password && social?.providers !== undefined && social.providers.length !== 0 && (
-                        <Box sx={{ mt: 3, display: "none" }}>
-                            <Divider sx={{ mb: 2 }} />
-                            <Typography variant="h6" sx={{ mb: 2 }}>
-                                {msg("identity-provider-login-label")}
-                            </Typography>
-                            <Stack spacing={2}>
-                                {social.providers.map(p => (
-                                    <Button
-                                        key={p.alias}
-                                        id={`social-${p.alias}`}
-                                        variant="outlined"
-                                        fullWidth
-                                        href={p.loginUrl}
-                                        sx={{
-                                            justifyContent: "flex-start",
-                                            textTransform: "none",
-                                            py: 1.5
-                                        }}
-                                        startIcon={
-                                            p.iconClasses && <i className={clsx(kcClsx("kcCommonLogoIdP"), p.iconClasses)} aria-hidden="true" />
-                                        }
-                                    >
-                                        <span dangerouslySetInnerHTML={{ __html: kcSanitize(p.displayName) }} />
-                                    </Button>
-                                ))}
-                            </Stack>
-                        </Box>
-                    )}
-                </>
-            }
+            // socialProvidersNode={
+            //     <>
+            //         {realm.password && social?.providers !== undefined && social.providers.length !== 0 && (
+            //             <Box sx={{ mt: 3, display: "none" }}>
+            //                 <Divider sx={{ mb: 2 }} />
+            //                 <Typography variant="h6" sx={{ mb: 2 }}>
+            //                     {msg("identity-provider-login-label")}
+            //                 </Typography>
+            //                 <Stack spacing={2}>
+            //                     {social.providers.map(p => (
+            //                         <Button
+            //                             key={p.alias}
+            //                             id={`social-${p.alias}`}
+            //                             variant="outlined"
+            //                             fullWidth
+            //                             href={p.loginUrl}
+            //                             sx={{
+            //                                 justifyContent: "flex-start",
+            //                                 textTransform: "none",
+            //                                 py: 1.5
+            //                             }}
+            //                             startIcon={
+            //                                 p.iconClasses && <i className={clsx(kcClsx("kcCommonLogoIdP"), p.iconClasses)} aria-hidden="true" />
+            //                             }
+            //                         >
+            //                             <span dangerouslySetInnerHTML={{ __html: kcSanitize(p.displayName) }} />
+            //                         </Button>
+            //                     ))}
+            //                 </Stack>
+            //             </Box>
+            //         )}
+            //     </>
+            // }
         >
             <div id="kc-form">
                 <div id="kc-form-wrapper">
@@ -196,7 +196,6 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                 sx={() => ({
                                     alignItems: "center",
                                     gap: 0.5,
-                                    position: "absolute",
                                     bottom: "20px",
                                     left: 0,
                                     right: 0,

@@ -2,7 +2,7 @@ import { FormEventHandler, useEffect, useState } from "react";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
-import { Box, Button, FormControl, FormLabel, Link, Stack, TextField, Typography, useTheme, Divider } from "@mui/material";
+import { Box, Button, FormControl, FormLabel, Link, Stack, TextField, Typography, useTheme } from "@mui/material";
 import { useConstCallback } from "powerhooks/useConstCallback";
 // import { clsx } from "keycloakify/tools/clsx";
 // import { kcSanitize } from "keycloakify/lib/kcSanitize";
@@ -18,7 +18,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
     //     classes
     // });
 
-    const { realm, url, usernameHidden, login, auth, registrationDisabled, messagesPerField, social } = kcContext;
+    const { realm, url, usernameHidden, login, auth, registrationDisabled, messagesPerField } = kcContext;
 
     const { msg, msgStr } = i18n;
 

@@ -20,7 +20,7 @@ const BaseLayout = ({ children }: { children: JSX.Element }) => {
             >
                 <AsideLogoSection />
 
-                {/* {children} */}
+                {children}
             </Box>
         </ThemeProvider>
     );

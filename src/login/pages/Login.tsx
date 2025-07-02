@@ -106,10 +106,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                         <Box
                             component="form"
                             id="kc-form-login"
-                            onSubmit={() => {
-                                setIsLoginButtonDisabled(true);
-                                return true;
-                            }}
+                            onSubmit={onSubmit}
                             action={url.loginAction}
                             method="post"
                             sx={{
@@ -217,7 +214,6 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                     id="kc-login"
                                     type="submit"
                                     disabled={isLoginButtonDisabled}
-                                    onClick={() => onSubmit}
                                 >
                                     {msgStr("doLogIn")}
                                 </Button>

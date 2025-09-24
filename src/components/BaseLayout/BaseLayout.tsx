@@ -1,75 +1,45 @@
 import { Box, Theme } from "@mui/material";
 import AsideLogoSection from "../AsideLogoSection/AsideLogoSection";
-import { AsideCard } from "@agronod/mui-components";
+import { AgronodCard } from "@agronod/mui-components";
+import { ThemeProvider, agronodTheme } from "@agronod/mui-components";
 
-const BaseLayout = (props: any) => {
-  return (
-    <Box
-      sx={(theme: Theme) => ({
-        display: "grid",
-        minHeight: "100dvh",
-        gridTemplateColumns: "auto minmax(30px, 592px)",
-        justifyContent: "stretch",
-        [theme.breakpoints.between("sm", "md")]: {
-          gridTemplateColumns: "1fr 1fr",
-        },
-        [theme.breakpoints.down("sm")]: {
-          display: "block",
-          height: "auto",
-          overflow: "auto",
-        },
-      })}
-    >
-      <AsideLogoSection />
+const BaseLayout = (props: { children: JSX.Element }) => {
+    return (
+        <ThemeProvider options={agronodTheme}>
+            <Box
+                sx={() => ({
+                    display: "grid",
+                    minHeight: "100dvh",
+                    backgroundColor: "red",
+                    justifyContent: "stretch",
+                    position: "relative"
+                })}
+            >
+                <AsideLogoSection />
 
-      <AsideCard
-        position="right"
-        sx={(theme: Theme) => ({
-          paddingX: 8,
-          paddingY: 6,
-          position: "relative",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          alignItems: "flex-start",
-
-          [theme.breakpoints.down("md")]: {
-            paddingTop: 8,
-            paddingX: 5,
-          },
-          [theme.breakpoints.down("sm")]: {
-            marginTop: "200px",
-            minHeight: "calc(100dvh - 200px)",
-            display: "flex",
-            paddingX: 4,
-            paddingY: 3,
-            gap: 5,
-          },
-        })}
-      >
-        <Box
-          sx={(theme: Theme) => ({
-            display: "grid",
-            gap: 3,
-            maxWidth: "464px",
-            width: "100%",
-            height: "100%",
-            alignItems: "center",
-            position: "relative",
-            [theme.breakpoints.down("sm")]: {
-              maxWidth: "100%",
-              width: "100%",
-              textAlign: "left",
-              marginBottom: 5,
-              alignItems: "start",
-            },
-          })}
-        >
-          {props.children}
-        </Box>
-      </AsideCard>
-    </Box>
-  );
+                <AgronodCard
+                    sx={(theme: Theme) => ({
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        borderRadius: 4,
+                        padding: theme.spacing(8),
+                        minWidth: "540px",
+                        maxWidth: "540px",
+                        [theme.breakpoints.down("sm")]: {
+                            minWidth: "350px",
+                            transform: "translate(-50%, -10%)",
+                            top: "auto",
+                            bottom: 0
+                        }
+                    })}
+                >
+                    {props.children}
+                </AgronodCard>
+            </Box>
+        </ThemeProvider>
+    );
 };
 
 export default BaseLayout;

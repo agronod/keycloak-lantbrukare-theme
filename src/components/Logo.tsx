@@ -1,22 +1,22 @@
-import { styled } from "@mui/material/styles";
-import agronodLogo from "../assets/agronodlogo.png";
-import React from "react";
+import Picture from "./Picture";
+import agronodLogoWebP from "../assets/agronodlogo.webp";
+import agronodLogoPNG from "../assets/agronodlogo.png";
 
 type LogoProps = {
-  size: "small" | "large";
+    size: "small" | "large";
 };
 
 const Logo = ({ size }: LogoProps) => {
-  const StyledImg = styled("img")({});
-  return (
-    <StyledImg
-      src={agronodLogo}
-      alt="Logo image"
-      sx={{
-        width: size === "small" ? 108 : 148,
-      }}
-    />
-  );
+    return (
+        <Picture
+            webpSrc={agronodLogoWebP}
+            fallbackSrc={agronodLogoPNG}
+            alt="Logo image"
+            style={{
+                width: size === "small" ? 108 : 148
+            }}
+        />
+    );
 };
 
 export default Logo;
